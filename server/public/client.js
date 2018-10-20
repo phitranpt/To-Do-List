@@ -7,6 +7,11 @@ function onReady() {
     console.log('JQ');
     $('#addTaskBtn').on('click', addTask);
     getAllTask();
+    $('#displayTask').on('click', '.delete-btn', function () {
+        console.log(this);
+        let taskId = $(this).closest('tr').data('id');
+        deleteTask(taskId);
+    } );
 }
 
 //POST tasks to database
@@ -24,6 +29,24 @@ function addTask() {
         getAllTask();
         clearInputs();
         console.log('task has been added to list', response);
+    })
+}
+
+//clear inputs
+function clearInput() {
+    $('#taskIn').val('');
+}
+
+//DELETE task from DOM and database
+function deleteTask(taskId) {
+    $.ajax({
+        method: 'DELETE',
+        url: `/weekend_to_do_app/${taskId}`
+    }).then(function (response) {
+        console.log('deleting task', response);
+        getAllTask();
+    }).catch(function (error) {
+        console.log('error in deleting', error);
     })
 }
 

@@ -57,13 +57,13 @@ app.post('/task', (req, res) => {
 })
 
 //DELETE route
-app.delete('/:id', (req, res) => {
+app.delete('/weekend_to_do_app/:id', (req, res) => {
     let reqId = req.params.id;
     console.log('delete request for id', reqId);
     let sqlText = 'DELETE FROM weekend_to_do_app WHERE id=$1;';
     pool.query(sqlText, [reqId])
         .then((result) => {
-            console.log('task deleted');
+            console.log('task deleted', result);
             res.sendStatus(200);
         })
         .catch((error) => {
