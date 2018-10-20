@@ -42,6 +42,19 @@ app.get('/task', (req, res) => {
 })
 
 //POST route
+app.post('/task', (req, res) => {
+    const newTask = req.body;
+    const sqlText = 'INSERT INTO weekend_to_do_app (task) VALUES ($1)';
+    pool.query(sqlText, [newTask.task])
+    .then((result) => {
+        console.log('added new task to the database', newTask);
+        res.sendStatus(201);
+    })
+    .catch((error) => {
+        console.log(`error making database queery ${sqlText}`, error);
+        res.sendStatus(500);
+    })
+})
 
 //DELETE route
 
