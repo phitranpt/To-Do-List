@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 const pg = require('pg');
 const Pool = pg.Pool;
 const pool = new Pool ({
-    database: 'weekend_to_do_list',
+    database: 'weekend_to_do_app',
     host: 'localhost',
     port: 5432,
     max: 10,
@@ -28,6 +28,18 @@ pool.on('error', (error) => {
 });
 
 //GET route
+app.get('weekend_to_do_app', (req, res) => {
+    const sqlText = 'SELECT * FROM weekend_to_do_app ORDER by task';
+    pool.query(sqlText)
+        .then((result) => {
+            console.log('got results from database', result);
+            res.send(result.rows);
+        })
+        .catch((error) => {
+            console.log(`error making database query ${sqlText}`, error);
+            res.sendStatus(500);
+        })
+})
 
 //POST route
 

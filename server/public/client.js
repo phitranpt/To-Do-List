@@ -6,7 +6,7 @@ $(document).ready(onReady);
 function onReady() {
     console.log('JQ');
     $('#addTaskBtn').on('click', addTask);
-    getAllTask();
+    // getAllTask();
 }
 
 //takes in users inputs and adds tasks
