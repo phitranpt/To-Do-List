@@ -28,8 +28,8 @@ pool.on('error', (error) => {
 });
 
 //GET route
-app.get('weekend_to_do_app', (req, res) => {
-    const sqlText = 'SELECT * FROM weekend_to_do_app ORDER by task';
+app.get('/task', (req, res) => {
+    const sqlText = `SELECT * FROM weekend_to_do_app ORDER BY task;`;
     pool.query(sqlText)
         .then((result) => {
             console.log('got results from database', result);
