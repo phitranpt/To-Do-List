@@ -6,9 +6,43 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="jquery.js"></script>
     <script src="client.js"></script>
+    <link rel="stylesheet" href="bootstrap.min.css">
     <title>Weekend 3 To Do List Assignment</title>
 </head>
 <body>
-    <h1>Weekend To Do List</h1>
+    <header>
+        <h1>Weekend To Do List</h1>
+    </header>
+    <!-- Users will enter and submit tasks in this section -->
+    <section id="addTask"> 
+        <h2>Add Task</h2>
+        <input type="text" id="taskIn" placeholder="Task">
+        <button type="button" id="addTaskBtn">Add Task</button>
+    </section>
+    <!-- This section will display a list of tasks to the user -->
+    <section>
+        <h2>All Tasks</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Task</th>
+                    <th>Complete</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody id="displayTask">
+                <!-- JQuery will display list of tasks here -->
+                <tr>
+                    <td>Wash Car</td>
+                </tr>
+                <tr>
+                    <td>Mow Lawn</td>
+                </tr>
+                <tr>
+                    <td>Vacuum</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
 </body>
 </html>
