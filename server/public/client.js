@@ -9,12 +9,25 @@ function onReady() {
     getAllTask();
 }
 
-//takes in users inputs and adds tasks
+//POST tasks to database
 function addTask() {
     console.log('addTaskBtn works!');
+    let taskIn = $('#taskIn').val();
+    console.log('new task being add:', taskIn);
+    $.ajax({
+        method: 'POST',
+        url: '/task',
+        data: {
+            task: taskIn
+        }
+    }).then(function(response) {
+        getAllTask();
+        clearInputs();
+        console.log('task has been added to list', response);
+    })
 }
 
-//get all tasks and display on DOM
+//GET tasks from database and append to DOM
 function getAllTask() {
     $.ajax({
         method: 'GET',
