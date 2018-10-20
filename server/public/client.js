@@ -21,5 +21,19 @@ function getAllTask() {
         url: '/task'
     }).then(function(response) {
         console.log('response:', response);
+        $('#displayTask').empty();
+        for (let todo of response) {
+        let newRow = $(`
+        <tr>
+            <td>${todo.task}</td>
+            <td>
+                <button class="complete-btn">Complete</button>
+                <button class="delete-btn">Delete</button>
+            </td>
+        </tr>
+        `)
+        $('#displayTask').append(newRow);
+        newRow.data('id', todo.id);
+        }
     })
 }
