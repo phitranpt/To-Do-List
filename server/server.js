@@ -44,7 +44,7 @@ app.get('/task', (req, res) => {
 //POST route
 app.post('/task', (req, res) => {
     const newTask = req.body;
-    const sqlText = 'INSERT INTO weekend_to_do_app (task) VALUES ($1)';
+    const sqlText = `INSERT INTO weekend_to_do_app (task) VALUES ($1)`;
     pool.query(sqlText, [newTask.task])
     .then((result) => {
         console.log('added new task to the database', newTask);
@@ -57,6 +57,20 @@ app.post('/task', (req, res) => {
 })
 
 //DELETE route
+app.delete('/:id', (req, res) => {
+    let reqId = req.params.id;
+    console.log('delete request for id', reqId);
+    let sqlText = 'DELETE FROM weekend_to_do_app WHERE id=$1;';
+    pool.query(sqlText, [reqId])
+        .then((result) => {
+            console.log('task deleted');
+            res.sendStatus(200);
+        })
+        .catch((error) => {
+            console.log(`error in deleting a task from database ${sqlText}`, error);
+            res.sendStatus(500);
+        })
+})
 
 //PUT route
 
