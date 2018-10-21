@@ -75,8 +75,17 @@ app.delete('/weekend_to_do_app/:id', (req, res) => {
 //PUT route
 app.put('/weekend_to_do_app/:id', (req, res) => {
     let taskId = req.params.id;
-    console.log('completed request for id', taskId);
-    let sqlText = 'UPDATE weekend_to_do_app WHERE id=$1'
+    let trueOrFalse = req.body.trueOrFalse
+    let sqlText = '';
+
+    if (trueOrFalse == 'done') {
+        sqlText = `UPDATE weekend_to_do_app SET completed=true WHERE id=$1`
+    }
+    else {
+        //if user does not click the complete btn, send back bad status and don't run code below
+        res.sendStatus(500);
+        return;
+    }
     pool.query(sqlText, [taskId])
         .then((result) => {
             console.log('task updated');

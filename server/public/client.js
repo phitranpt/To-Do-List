@@ -13,9 +13,9 @@ function onReady() {
         deleteTask(taskId);
     });
     $('#displayTask').on('click', '.complete-btn', function () {
-        console.log(this);
-        $(this).parent().parent().toggleClass('green');
-    })
+        let taskId = $(this).closest('tr').data('id');
+        completeTask(taskId, 'done')
+    });
 }
 
 //POST tasks to database
@@ -42,10 +42,13 @@ function clearInput() {
 }
 
 //PUT task to completed in database
-function completeTask(taskId) {
+function completeTask(taskId, trueOrFalse) {
     $.ajax({
         method: 'PUT',
-        url: `/weekend_to_do_app/${taskId}`
+        url: `/weekend_to_do_app/${taskId}`,
+        data: {
+            trueOrFalse: trueOrFalse
+        }
     }).then(function (response) {
         console.log('marking completed task green', response);
         getAllTask();
