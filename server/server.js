@@ -41,20 +41,6 @@ app.get('/task', (req, res) => {
         })
 })
 
-//GET route to toggle green on complete
-app.get('/completed', (req, res) => {
-    const sqlText = `SELECT * FROM weekend_to_do_app WHERE completed = true;`;
-    pool.query(sqlText)
-        .then((result) => {
-            console.log('got results from database', result);
-            res.send(result.rows);
-        })
-        .catch((error) => {
-            console.log(`error making database query ${sqlText}`, error);
-            res.sendStatus(500);
-        })
-})
-
 //POST route
 app.post('/task', (req, res) => {
     const newTask = req.body;
@@ -113,7 +99,7 @@ app.put('/weekend_to_do_app/:id', (req, res) => {
 })
 
 //globals
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 4000;
 app.listen(port, () => {
     console.log('listening on port', port);
 })

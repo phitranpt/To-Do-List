@@ -6,7 +6,6 @@ $(document).ready(onReady);
 function onReady() {
     console.log('JQ');
     getAllTask();
-    toggleGreen();
     $('#addTaskBtn').on('click', addTask);
     $('#displayTask').on('click', '.complete-btn', function () {
         $(this).closest('tr').toggleClass('green');
@@ -89,28 +88,13 @@ function getAllTask() {
         </tr>
         `)
         $('#displayTask').append(newRow);
+        //if task is completed is true, add a class turn row green
+        if(todo.completed){
+            newRow.addClass('green');
+        }
         newRow.data('id', todo.id);
         }
     })
 }
 
-//GET if completed, toggle row to be green
-function toggleGreen() {
-    $.ajax({
-        method: 'GET',
-        url: '/completed'
-    }).then(function(response) {
-        console.log('response from completed:', response);
-        for(let green of response) {
-            console.log(green.completed);
-            if (green.completed === true) {
-                console.log('turning green');
-                $('.complete-btn').toggleClass('green');
-            }
-            else {
-                console.log('not turning green');
-            }
-        }
-    }) //end then
-} //end toggleGreen
 
