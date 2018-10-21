@@ -27,9 +27,23 @@ pool.on('error', (error) => {
     console.log('error connecting to database', error);
 });
 
-//GET route
+//GET route to display tasks on DOM
 app.get('/task', (req, res) => {
     const sqlText = `SELECT * FROM weekend_to_do_app ORDER BY task;`;
+    pool.query(sqlText)
+        .then((result) => {
+            console.log('got results from database', result);
+            res.send(result.rows);
+        })
+        .catch((error) => {
+            console.log(`error making database query ${sqlText}`, error);
+            res.sendStatus(500);
+        })
+})
+
+//GET route to toggle green on complete
+app.get('/completed', (req, res) => {
+    const sqlText = `SELECT * FROM weekend_to_do_app WHERE completed = true;`;
     pool.query(sqlText)
         .then((result) => {
             console.log('got results from database', result);
@@ -78,11 +92,12 @@ app.put('/weekend_to_do_app/:id', (req, res) => {
     let trueOrFalse = req.body.trueOrFalse
     let sqlText = '';
 
+    //if user clicks complete btn, mark true on database
     if (trueOrFalse == 'done') {
         sqlText = `UPDATE weekend_to_do_app SET completed=true WHERE id=$1`
     }
+    //if user does not click the complete btn, send back bad status and don't run code below
     else {
-        //if user does not click the complete btn, send back bad status and don't run code below
         res.sendStatus(500);
         return;
     }

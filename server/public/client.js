@@ -13,6 +13,7 @@ function onReady() {
         deleteTask(taskId);
     });
     $('#displayTask').on('click', '.complete-btn', function () {
+        $(this).closest('tr').toggleClass('green');
         let taskId = $(this).closest('tr').data('id');
         completeTask(taskId, 'done')
     });
@@ -50,7 +51,7 @@ function completeTask(taskId, trueOrFalse) {
             trueOrFalse: trueOrFalse
         }
     }).then(function (response) {
-        console.log('marking completed task green', response);
+        console.log('marking completed task true on database', response);
         getAllTask();
     }).catch(function (error) {
         console.log('error in PUT', error);
@@ -91,4 +92,23 @@ function getAllTask() {
         }
     })
 }
+
+//GET if completed, toggle row to be green
+function toggleGreen() {
+    $.ajax({
+        method: 'GET',
+        url: '/completed'
+    }).then(function(response) {
+        console.log('response from completed:', response);
+        for(let green of response) {
+            if (green.completed === true) {
+                console.log('turning green');
+                $('.complete-btn').toggleClass('green');
+            }
+            else {
+                console.log('not turning green');
+            }
+        }
+    }) //end then
+} //end toggleGreen
 
