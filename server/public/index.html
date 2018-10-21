@@ -8,22 +8,24 @@
     <script src="client.js"></script>
     <link rel="stylesheet" href="bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Mali" rel="stylesheet">
     <title>Weekend 3 To Do List Assignment</title>
 </head>
 <body class="container">
-    <header>
+    <header class="jumbotron">
         <h1>Weekend To Do List</h1>
     </header>
     <!-- Users will enter and submit tasks in this section -->
     <section id="addTask"> 
         <label>Task</label>
         <input type="text" id="taskIn" placeholder="Enter Task to Add">
-        <button type="button" id="addTaskBtn">Add Task</button>
+        <button type="button" id="addTaskBtn" class="btn-outline-primary btn">Add Task</button>
     </section>
+    <br>
     <!-- This section will display a list of tasks to the user -->
     <section>
         <h2>All Tasks</h2>
-        <table class="table">
+        <table class="table table-hover table-bordered">
             <thead>
                 <tr>
                     <th>Task</th>
@@ -36,5 +38,8 @@
             </tbody>
         </table>
     </section>
+    <footer class="container">
+        <p>&copy 2018 Phi Tran</p>
+    </footer>
 </body>
 </html>

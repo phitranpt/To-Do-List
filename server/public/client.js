@@ -83,8 +83,8 @@ function getAllTask() {
         let newRow = $(`
         <tr>
             <td>${todo.task}</td>
-            <td><button class="complete-btn">Complete</button></td>
-            <td><button class="delete-btn">Delete</button></td>
+            <td><button class="complete-btn btn btn-outline-success">Complete</button></td>
+            <td><button class="delete-btn btn btn-outline-danger">Delete</button></td>
         </tr>
         `)
         $('#displayTask').append(newRow);
