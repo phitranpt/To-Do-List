@@ -5,13 +5,17 @@ $(document).ready(onReady);
 //onReady listener
 function onReady() {
     console.log('JQ');
-    $('#addTaskBtn').on('click', addTask);
     getAllTask();
+    $('#addTaskBtn').on('click', addTask);
     $('#displayTask').on('click', '.delete-btn', function () {
         console.log(this);
         let taskId = $(this).closest('tr').data('id');
         deleteTask(taskId);
-    } );
+    });
+    $('#displayTask').on('click', '.complete-btn', function () {
+        console.log(this);
+        $(this).parent().parent().toggleClass('green');
+    })
 }
 
 //POST tasks to database
@@ -27,7 +31,7 @@ function addTask() {
         }
     }).then(function(response) {
         getAllTask();
-        clearInputs();
+        clearInput();
         console.log('task has been added to list', response);
     })
 }
@@ -35,6 +39,19 @@ function addTask() {
 //clear inputs
 function clearInput() {
     $('#taskIn').val('');
+}
+
+//PUT task to completed in database
+function completeTask(taskId) {
+    $.ajax({
+        method: 'PUT',
+        url: `/weekend_to_do_app/${taskId}`
+    }).then(function (response) {
+        console.log('marking completed task green', response);
+        getAllTask();
+    }).catch(function (error) {
+        console.log('error in PUT', error);
+    })
 }
 
 //DELETE task from DOM and database
@@ -71,3 +88,4 @@ function getAllTask() {
         }
     })
 }
+
