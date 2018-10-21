@@ -6,16 +6,17 @@ $(document).ready(onReady);
 function onReady() {
     console.log('JQ');
     getAllTask();
+    toggleGreen();
     $('#addTaskBtn').on('click', addTask);
-    $('#displayTask').on('click', '.delete-btn', function () {
-        console.log(this);
-        let taskId = $(this).closest('tr').data('id');
-        deleteTask(taskId);
-    });
     $('#displayTask').on('click', '.complete-btn', function () {
         $(this).closest('tr').toggleClass('green');
         let taskId = $(this).closest('tr').data('id');
         completeTask(taskId, 'done')
+    });
+    $('#displayTask').on('click', '.delete-btn', function () {
+        console.log(this);
+        let taskId = $(this).closest('tr').data('id');
+        deleteTask(taskId);
     });
 }
 
@@ -101,6 +102,7 @@ function toggleGreen() {
     }).then(function(response) {
         console.log('response from completed:', response);
         for(let green of response) {
+            console.log(green.completed);
             if (green.completed === true) {
                 console.log('turning green');
                 $('.complete-btn').toggleClass('green');

@@ -30,13 +30,13 @@ Background color of the page
 font family and size
 text color & or background color of tasks to show whether or not they have been completed
 
-### Approach
+<!-- ### Approach
 
-We would recommend you spend some time thinking about how to approach this problem. Think through all the logic that will be needed prior to writing any code. Take your time, relax, remember that impostor syndrome is real, and that you are capable of knocking this out of the park!
+We would recommend you spend some time thinking about how to approach this problem. Think through all the logic that will be needed prior to writing any code. Take your time, relax, remember that impostor syndrome is real, and that you are capable of knocking this out of the park! -->
 
-### Create a Database
+<!-- ### Create a Database
 
-Be sure to create a new database through Postico. Use the name `weekend-to-do-app`. You will need to use this name in your database connection configuration on your server.
+Be sure to create a new database through Postico. Use the name `weekend-to-do-app`. You will need to use this name in your database connection configuration on your server. -->
 
 ### Database Structure
 
