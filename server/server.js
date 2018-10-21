@@ -73,9 +73,23 @@ app.delete('/weekend_to_do_app/:id', (req, res) => {
 })
 
 //PUT route
+app.put('/weekend_to_do_app/:id', (req, res) => {
+    let taskId = req.params.id;
+    console.log('completed request for id', taskId);
+    let sqlText = 'UPDATE weekend_to_do_app WHERE id=$1'
+    pool.query(sqlText, [taskId])
+        .then((result) => {
+            console.log('task updated');
+            res.sendStatus(200);
+        })
+        .catch((error) => {
+            console.log(`error in updating task from database', ${sqlText}`, error);
+            res.sendStatus(500);
+        })
+})
 
 //globals
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4000;
 app.listen(port, () => {
     console.log('listening on port', port);
 })
