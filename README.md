@@ -26,9 +26,9 @@ You are going to create a 'TO DO' application. This type of application is very 
 
 Use CSS styling to move the aesthetic of the page beyond the vanilla HTML look:
 
-Background color of the page
+<!-- Background color of the page
 font family and size
-text color & or background color of tasks to show whether or not they have been completed
+text color & or background color of tasks to show whether or not they have been completed -->
 
 <!-- ### Approach
 

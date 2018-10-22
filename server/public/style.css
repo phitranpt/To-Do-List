@@ -1,9 +1,19 @@
-.green {
-    background-color: rgb(176, 255, 176);
+body {
+    background-color: rgb(251, 251, 251);
 }
 
-h1, h2 {
+.green {
+    background-color: rgb(231, 255, 218);
+}
+
+h1, {
     font-family: 'Mali', cursive;
+    font-size: 50px;
+}
+
+h2 {
+    font-family: 'Mali', cursive;
+    font-size: 25px;
 }
 
 input {
