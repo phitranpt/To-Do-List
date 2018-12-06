@@ -99,7 +99,7 @@ app.put('/weekend_to_do_app/:id', (req, res) => {
 })
 
 //globals
-const port = process.env.PORT || 2000;
+const port = process.env.PORT || 5000;
 app.listen(port, () => {
     console.log('listening on port', port);
 })
